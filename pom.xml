@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <name>Game Launcher Web</name>
-    <description>Simple web launcher for Chess and Memory Game JAR files</description>
+    <description>Simple web launcher for Chess, Memory, and Checker Game JAR files</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

@@ -17,6 +17,7 @@ public class GameLauncherController {
     // Directory paths where JAR files are located
     private static final String CHESS_PROJECT_DIR = "../chess_game_project";
     private static final String MEMORY_PROJECT_DIR = "../memory_game_project_extended";
+    private static final String CHECKER_PROJECT_DIR = "../checker_game_project";
 
     @GetMapping("/")
     public String index() {
@@ -36,6 +37,9 @@ public class GameLauncherController {
             } else if ("memory".equals(game)) {
                 jarFile = findLatestJar(MEMORY_PROJECT_DIR, "memory_game");
                 gameName = "Memory Game";
+            } else if ("checker".equals(game)) {
+                jarFile = findLatestJar(CHECKER_PROJECT_DIR, "checker");
+                gameName = "Checker Game";
             } else {
                 return "{\"status\":\"error\",\"message\":\"Invalid game\"}";
             }
@@ -48,10 +52,10 @@ public class GameLauncherController {
             ProcessBuilder pb = new ProcessBuilder("java", "-jar", jarFile.getAbsolutePath());
             pb.start();
             
-            return "{\"status\":\"success\",\"message\":\"" + gameName + " launched successfully! (\" + jarFile.getName() + \")\"}";
+            return "{\"status\":\"success\",\"message\":\"" + gameName + " launched successfully! (" + jarFile.getName() + ")\"}";
             
         } catch (IOException e) {
-            return "{\"status\":\"error\",\"message\":\"Error launching game: " + e.getMessage() + "\"}";
+            return "{\"status\":\"error\",\"message\":\"Error launching game: " + e.getMessage().replace("\"", "\\\\\"") + "\"}";
         }
     }
     
