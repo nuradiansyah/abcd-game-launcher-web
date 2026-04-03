@@ -14,10 +14,11 @@ import java.util.Comparator;
 @Controller
 public class GameLauncherController {
 
-    // Directory paths where JAR files are located
-    private static final String CHESS_PROJECT_DIR = "../chess_game_project";
-    private static final String MEMORY_PROJECT_DIR = "../memory_game_project_extended";
-    private static final String CHECKER_PROJECT_DIR = "../checker_game_project";
+    // Directory paths where JAR releases are located
+    private static final String CHESS_PROJECT_DIR = "../chess_game_project/releases";
+    private static final String MEMORY_PROJECT_DIR = "../memory_game_project_extended/releases";
+    private static final String CHECKER_PROJECT_DIR = "../checker_game_project/releases";
+    private static final String CONNECT_FOUR_PROJECT_DIR = "../connect_four_game_project/releases";
 
     @GetMapping("/")
     public String index() {
@@ -40,6 +41,9 @@ public class GameLauncherController {
             } else if ("checker".equals(game)) {
                 jarFile = findLatestJar(CHECKER_PROJECT_DIR, "checker");
                 gameName = "Checker Game";
+            } else if ("connectfour".equals(game)) {
+                jarFile = findLatestJar(CONNECT_FOUR_PROJECT_DIR, "connect_four");
+                gameName = "Connect Four";
             } else {
                 return "{\"status\":\"error\",\"message\":\"Invalid game\"}";
             }
